@@ -44,7 +44,7 @@
 :root.light #loginPage{background:radial-gradient(ellipse 60% 50% at 50% 0%,#dbeafe 0%,#f0f4fa 70%);}
 :root.light .toast{background:#fff;border:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,0.12);color:var(--text);}
 :root.light .notif-popup{background:#fff;border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,0.15);}
-:root.light .script-file,:root.light .folder-row:hover,:root.light 
+:root.light .script-file,:root.light .folder-row:hover,:root.light .scripts-upload-area{background:#f8fafc;}
 :root.light .tl-item{background:#fff;border-color:var(--border);}
 :root.light .user-card,:root.light .user-card-mini{background:#fff;border-color:var(--border);}
 
@@ -494,39 +494,39 @@ h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;}
 .search-empty{padding:32px;text-align:center;color:var(--text3);font-size:13px;}
 .search-footer{padding:10px 20px;border-top:1px solid var(--border);display:flex;gap:16px;font-size:11px;color:var(--text3);}
 .search-footer kbd{padding:2px 6px;border-radius:4px;background:var(--surface2);border:1px solid var(--border);font-family:monospace;}
-
-
-
-
-
-
-
-
-
-
-
-
-.folder-row.open 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.fm-folder-card:hover 
+.scripts-tabs{display:flex;gap:8px;margin-bottom:20px;}
+.scripts-tab{padding:8px 20px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text2);font-size:13px;font-weight:600;font-family:'Syne',sans-serif;cursor:pointer;transition:all 0.15s;}
+.scripts-tab.active{background:var(--blue-dim);border-color:var(--blue);color:var(--blue-light);}
+.scripts-tab.regional.active{background:rgba(192,132,252,0.12);border-color:#c084fc;color:#c084fc;}
+.folder-tree{display:flex;flex-direction:column;gap:4px;}
+.folder-row{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;cursor:pointer;transition:background 0.12s;user-select:none;}
+.folder-row:hover{background:var(--surface2);}
+.folder-row.open{background:var(--surface2);}
+.folder-icon{font-size:16px;flex-shrink:0;}
+.folder-name{font-size:13px;font-weight:600;color:var(--text);flex:1;}
+.folder-count{font-size:11px;color:var(--text3);background:var(--surface3);padding:2px 7px;border-radius:10px;}
+.folder-chevron{font-size:11px;color:var(--text3);transition:transform 0.15s;flex-shrink:0;}
+.folder-row.open .folder-chevron{transform:rotate(90deg);}
+.folder-children{display:none;margin-left:24px;border-left:1px solid var(--border);padding-left:12px;margin-top:4px;margin-bottom:4px;}
+.folder-children.open{display:flex;flex-direction:column;gap:3px;}
+.script-file{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;background:var(--surface);border:1px solid var(--border);transition:all 0.15s;margin-bottom:3px;}
+.script-file:hover{border-color:var(--border2);background:var(--surface2);}
+.file-icon{font-size:18px;flex-shrink:0;}
+.file-info{flex:1;min-width:0;}
+.file-name{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.file-meta{font-size:11px;color:var(--text3);margin-top:2px;}
+.file-comment{font-size:11px;color:var(--text2);font-style:italic;margin-top:2px;}
+.file-actions{display:flex;gap:5px;flex-shrink:0;}
+.scripts-upload-area{border:2px dashed var(--border2);border-radius:12px;padding:32px;text-align:center;cursor:pointer;transition:all 0.15s;background:var(--surface);margin-bottom:20px;}
+.scripts-upload-area:hover,.scripts-upload-area.dragover{border-color:var(--blue);background:var(--blue-dim);}
+.upload-icon{font-size:36px;margin-bottom:10px;}
+.upload-hint{font-size:12px;color:var(--text3);margin-top:6px;}
+.scripts-empty{text-align:center;padding:48px 24px;color:var(--text2);}
+.scripts-empty .es-icon{font-size:40px;margin-bottom:12px;}
+.fm-folder-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 12px;cursor:pointer;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;}
+.fm-folder-card:hover{border-color:var(--blue);background:var(--blue-dim);transform:translateY(-2px);}
+.fm-folder-actions{display:none;position:absolute;top:6px;right:6px;gap:3px;}
+.fm-folder-card:hover .fm-folder-actions{display:flex;}
 
 /* ── LIVE WORKING BANNER ── */
 @keyframes livePulse{
@@ -613,7 +613,7 @@ h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;}
     <div class="content" id="contentArea"></div>
   </div>
   <div style="text-align:center;padding:18px;border-top:1px solid var(--border);background:var(--surface);flex-shrink:0">
-    <span style="font-size:10px;color:var(--text3);font-family:monospace">v 03.04.2026 12:11</span>
+    <span style="font-size:10px;color:var(--text3);font-family:monospace">v 03.04.2026 13:10</span>
   </div>
 </div>
 
@@ -999,7 +999,7 @@ const TRANSLATIONS = {
     label_scope: 'Lloji i Projektit',
     // Nav
     nav_dashboard: 'Dashboard', nav_projects: 'Projektet', nav_timeline: 'Timeline',
-    nav_team: 'Ekipi', nav_myprojects: 'Projektet e Mia',
+    nav_team: 'Ekipi', nav_myprojects: 'Projektet e Mia', nav_scripts: '📄 Skripta',
     // Dashboard
     dash_welcome: 'Mirë se erdhe', dash_total: 'Gjithsej Projektet', dash_active: 'Aktive',
     live_title: 'SOT PO PUNOHET', live_subtitle: 'live', live_empty: 'Asnjë projekt aktiv tani',
@@ -1179,7 +1179,7 @@ const TRANSLATIONS = {
     label_scope: 'Project Type',
     // Nav
     nav_dashboard: 'Dashboard', nav_projects: 'Projects', nav_timeline: 'Timeline',
-    nav_team: 'Team', nav_myprojects: 'My Projects',
+    nav_team: 'Team', nav_myprojects: 'My Projects', nav_scripts: '📄 Scripts',
     // Dashboard
     dash_welcome: 'Welcome', dash_total: 'Total Projects', dash_active: 'Active',
     live_title: 'WORKING TODAY', live_subtitle: 'live', live_empty: 'No active projects right now',
@@ -1424,111 +1424,72 @@ let db = {
 
 let _firestoreReady=false;
 
-function _firestoreAfterLoad(){
-  const savedUser=localStorage.getItem('sm_current_user');
-  if(savedUser){
-    try{
-      const u=JSON.parse(savedUser);
-      const found=db.users.find(x=>x.id===u.id);
-      if(found){
-        currentUser=found;
-        document.getElementById('loginPage').style.display='none';
-        document.getElementById('app').classList.add('active');
-        initApp();
-        return;
-      }
-    }catch(e){}
-  }
-  document.getElementById('loginPage').style.display='flex';
-  updateLoginLang();
-}
-
 function _loadFromFirestore(){
-  const col=window._db_firestore.collection('studio_db');
-  Promise.all([
-    col.doc('core').get(),
-    col.doc('projects').get(),
-    col.doc('notifications').get(),
-    col.doc('scripts').get(),
-  ]).then(([cDoc,pDoc,nDoc,sDoc])=>{
-    if(cDoc.exists && cDoc.data()?.users?.length>0){
-      // New split format
-      Object.assign(db, cDoc.data());
-      if(pDoc.exists) db.projects=pDoc.data().projects||[];
-      if(nDoc.exists) db.notifications=nDoc.data().notifications||[];
-    } else {
-      // Try old single-doc format and migrate
-      col.doc('main').get().then(doc=>{
-        if(doc.exists && doc.data()?.users?.length>0){
-          const d=doc.data();
-          db.users=d.users||db.users;
-          db.projects=d.projects||[];
-          db.notifications=d.notifications||[];
-        }
-        _firestoreReady=true;
-        save(); // Migrate to new format
-        _firestoreAfterLoad();
-      }).catch(()=>{ _firestoreReady=true; _firestoreAfterLoad(); });
-      return;
+  window._db_firestore.collection('studio_db').doc('main').get().then(doc=>{
+    if(doc.exists){
+      const data=doc.data();
+      if(data && data.users && data.users.length>0){
+        db=data;
+      }
     }
     _firestoreReady=true;
-    _firestoreAfterLoad();
+    // If user was already logged in via localStorage session
+    const savedUser=localStorage.getItem('sm_current_user');
+    if(savedUser){
+      try{
+        const u=JSON.parse(savedUser);
+        const found=db.users.find(x=>x.id===u.id);
+        if(found){
+          currentUser=found;
+          document.getElementById('loginPage').style.display='none';
+          document.getElementById('app').classList.add('active');
+          initApp();
+          return;
+        }
+      }catch(e){}
+    }
+    // Show login page ready
+    document.getElementById('loginPage').style.display='flex';
+    updateLoginLang();
   }).catch(err=>{
-    console.warn('Firestore load failed, localStorage fallback',err);
+    console.warn('Firestore load failed, using localStorage fallback',err);
     _firestoreReady=true;
     const local=localStorage.getItem('sm_db3');
     if(local){try{db=JSON.parse(local);}catch(e){}}
-    _firestoreAfterLoad();
   });
 }
 
 function save(){
-  // Trim notifications
-  if((db.notifications||[]).length>100) db.notifications=db.notifications.slice(-100);
-  // Always save to localStorage
+  // Always save to localStorage as backup
   localStorage.setItem('sm_db3',JSON.stringify(db));
-  if(!_firestoreReady||!window._db_firestore) return;
-  const col=window._db_firestore.collection('studio_db');
-  // Core doc: users + settings (no large data)
-  col.doc('core').set({
-    users: db.users||[],
-    }).catch(e=>console.warn('Firestore core save failed',e));
-  // Projects doc
-  col.doc('projects').set({
-    projects: db.projects||[]
-  }).catch(e=>console.warn('Firestore projects save failed',e));
-  // Notifications doc
-  col.doc('notifications').set({
-    notifications: db.notifications||[]
-  }).catch(e=>console.warn('Firestore notifications save failed',e));
-  // Scripts doc — strip Base64 if over 800KB
-  const scriptsSize=JSON.stringify(scriptsData).length;
-  col.doc('scripts').set({
-    scripts: scriptsSize>800000 ? scriptsData.map(s=>({...s,content:null})) : scriptsData
-  }).catch(e=>console.warn('Firestore scripts save failed',e));
+  // Save to Firestore
+  if(_firestoreReady && window._db_firestore){
+    window._db_firestore.collection('studio_db').doc('main').set(db).catch(e=>{
+      console.warn('Firestore save failed',e);
+    });
+  }
 }
 
-// Poll Firestore every 10s for sync
+// Poll Firestore every 8s for real-time-ish sync
 setInterval(()=>{
-  if(!_firestoreReady||!currentUser||!window._db_firestore) return;
-  const col=window._db_firestore.collection('studio_db');
-  Promise.all([col.doc('projects').get(), col.doc('notifications').get()]).then(([pDoc,nDoc])=>{
-    let changed=false;
-    if(pDoc.exists){
-      const rp=pDoc.data().projects||[];
-      if(JSON.stringify(rp)!==JSON.stringify(db.projects)){db.projects=rp;changed=true;}
-    }
-    if(nDoc.exists){
-      const rn=nDoc.data().notifications||[];
-      if(rn.length>(db.notifications||[]).length){db.notifications=rn;changed=true;}
-    }
-    if(changed){
+  if(!_firestoreReady||!currentUser||!window._db_firestore)return;
+  window._db_firestore.collection('studio_db').doc('main').get().then(doc=>{
+    if(!doc.exists)return;
+    const remote=doc.data();
+    if(!remote||!remote.users)return;
+    // Simple check: compare notification count to detect changes from other users
+    const remoteNotifCount=(remote.notifications||[]).length;
+    const localNotifCount=(db.notifications||[]).length;
+    const remoteProjectUpdated=JSON.stringify(remote.projects)!==JSON.stringify(db.projects);
+    if(remoteNotifCount>localNotifCount||remoteProjectUpdated){
+      db=remote;
       localStorage.setItem('sm_db3',JSON.stringify(db));
       updateNotifBadge();
-      if(currentPage==='dashboard') renderPage('dashboard');
+      // Refresh current page silently
+      if(currentPage==='dashboard')renderPage('dashboard');
     }
   }).catch(()=>{});
-},10000);
+},8000);
 
 let currentUser=null,editingProjectId=null,progressEditId=null,currentPage='dashboard',currentFilter='all',notifPanelOpen=false,confirmCallback=null;
 
@@ -1569,8 +1530,7 @@ function initApp(){
   presencePing();
   updateModalLang();
   startDeadlineAlarms();
-  if(isAdmin()) startAdminAlarm();
-  loadEmailJS();
+  if(isAdmin()){startAdminAlarm();loadEmailJS();}
   buildNav();renderPage('dashboard');updateNotifBadge();
 }
 
@@ -1579,11 +1539,11 @@ function buildNav(){
   if(isAdmin())
     pages=[{id:'dashboard',label:'⚙️ Admin'},{id:'projects',label:t('nav_projects')},{id:'timeline',label:t('nav_timeline')},{id:'users',label:t('nav_team')}];
   else if(isLocalLeader())
-    pages=[{id:'dashboard',label:t('nav_dashboard')},{id:'projects',label:t('nav_projects')},{id:'timeline',label:t('nav_timeline')},{id:'users',label:t('nav_team')}];
+    pages=[{id:'dashboard',label:t('nav_dashboard')},{id:'projects',label:t('nav_projects')},{id:'scripts',label:t('nav_scripts')},{id:'timeline',label:t('nav_timeline')},{id:'users',label:t('nav_team')}];
   else if(isRegionalLeader())
-    pages=[{id:'dashboard',label:t('nav_dashboard')},{id:'projects',label:t('nav_projects')},{id:'timeline',label:t('nav_timeline')}];
+    pages=[{id:'dashboard',label:t('nav_dashboard')},{id:'projects',label:t('nav_projects')},{id:'scripts',label:t('nav_scripts')},{id:'timeline',label:t('nav_timeline')}];
   else
-    pages=[{id:'dashboard',label:t('nav_dashboard')},{id:'myprojects',label:t('nav_myprojects')},{id:'timeline',label:t('nav_timeline')}];
+    pages=[{id:'dashboard',label:t('nav_dashboard')},{id:'myprojects',label:t('nav_myprojects')},{id:'scripts',label:t('nav_scripts')},{id:'timeline',label:t('nav_timeline')}];
   document.getElementById('topNav').innerHTML=pages.map(p=>`<button class="nav-btn ${currentPage===p.id?'active':''}" onclick="renderPage('${p.id}')">${p.label}</button>`).join('');
 }
 
@@ -1671,13 +1631,19 @@ function isLocalLeader(u){ return (u||currentUser).role==='leader'; }
 function isRegionalLeader(u){ return (u||currentUser).role==='regional'; }
 function isEditor(u){ return (u||currentUser).role==='editor'; }
 function isAnyLeader(u){ const r=(u||currentUser).role; return r==='leader'||r==='regional'; }
+function isAdmin(u){ return (u||currentUser).role==='admin'; }
+
+// Can current user SEE this project?
 function canSeeProject(p){
   if(isAdmin()) return true;
   const scope=p.scope||'local';
-  if(isLocalLeader()) return true;
-  if(isRegionalLeader()) return scope==='regional';
+  if(isLocalLeader()) return true; // local leader sees all
+  if(isRegionalLeader()) return scope==='regional'; // regional only sees regional
+  // editor: sees own projects
   return getAssignees(p).includes(currentUser.id);
 }
+
+// Can current user MANAGE (edit/cancel/delete) this project?
 function canManageProject(p){
   if(isAdmin()) return true;
   const scope=p.scope||'local';
@@ -1706,52 +1672,280 @@ function getAvatarClass(role){
 }
 
 // ══ PAGES ══
+// ══ SCRIPTS FILE MANAGER ══
+let _scriptScope='local';
+let _scriptFolderId=null;
+
+function canSeeScripts(scope){
+  if(isLocalLeader()) return true;
+  if(isRegionalLeader()) return scope==='regional';
+  return true;
+}
+function canUploadScripts(scope){
+  if(isLocalLeader()) return true;
+  if(isRegionalLeader()) return scope==='regional';
+  return false;
+}
+function canManageScripts(scope){
+  if(isLocalLeader()) return true;
+  if(isRegionalLeader()) return scope==='regional';
+  return false;
+}
+function getFileIcon(name){
+  const ext=(name||'').split('.').pop().toLowerCase();
+  if(['doc','docx'].includes(ext)) return '📝';
+  if(ext==='pdf') return '📕';
+  if(['xls','xlsx'].includes(ext)) return '📊';
+  if(['ppt','pptx'].includes(ext)) return '📋';
+  if(['jpg','jpeg','png','gif'].includes(ext)) return '🖼';
+  return '📄';
+}
+function formatFileSize(bytes){
+  if(!bytes) return '';
+  if(bytes<1024) return bytes+'B';
+  if(bytes<1024*1024) return (bytes/1024).toFixed(0)+'KB';
+  return (bytes/(1024*1024)).toFixed(1)+'MB';
+}
+function renderScripts(){
+  return `<div class="page-header">
+    <div class="page-title">📄 ${currentLang==='sq'?'Arkiva e Skriptave':'Script Archive'}</div>
+  </div>
+  <div class="scripts-tabs">
+    <button class="scripts-tab${_scriptScope==='local'?' active':''}" onclick="switchScriptTab('local')">🏠 ${currentLang==='sq'?'Lokale':'Local'}</button>
+    <button class="scripts-tab regional${_scriptScope==='regional'?' active':''}" onclick="switchScriptTab('regional')">🌐 ${currentLang==='sq'?'Regjionale':'Regional'}</button>
+  </div>
+  <div id="scriptsContent"></div>`;
+}
+function initScriptsPage(){
+  if(isRegionalLeader()) _scriptScope='regional';
+  else _scriptScope='local';
+  _scriptFolderId=null;
+  renderScriptsContent();
+}
+function switchScriptTab(scope){
+  _scriptScope=scope; _scriptFolderId=null;
+  document.querySelectorAll('.scripts-tab').forEach(b=>{
+    b.classList.toggle('active',(scope==='local'&&!b.classList.contains('regional'))||(scope==='regional'&&b.classList.contains('regional')));
+  });
+  renderScriptsContent();
+}
+function getFolders(parentId,scope){
+  return (db.scriptFolders||[]).filter(f=>f.scope===scope&&f.parentId===(parentId||null));
+}
+function getFiles(folderId,scope){
+  return (db.scripts||[]).filter(s=>s.scope===scope&&s.folderId===(folderId||null));
+}
+function getFolderPath(folderId){
+  const path=[]; let cur=folderId;
+  while(cur){const f=(db.scriptFolders||[]).find(x=>x.id===cur);if(!f)break;path.unshift(f);cur=f.parentId||null;}
+  return path;
+}
+function renderScriptsContent(){
+  const el=document.getElementById('scriptsContent'); if(!el) return;
+  if(!canSeeScripts(_scriptScope)){el.innerHTML=`<div class="scripts-empty"><div class="es-icon">🔒</div><p>${currentLang==='sq'?'Nuk keni akses':'No access'}</p></div>`;return;}
+  const canManage=canManageScripts(_scriptScope);
+  const folders=getFolders(_scriptFolderId,_scriptScope);
+  const files=getFiles(_scriptFolderId,_scriptScope);
+  const path=getFolderPath(_scriptFolderId);
+
+  let html=`<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:14px;font-size:13px;background:var(--surface2);padding:8px 12px;border-radius:8px">
+    <span style="cursor:pointer;color:var(--blue-light);font-weight:600" onclick="navigateFolder(null)">🏠 Root</span>
+    ${path.map(f=>`<span style="color:var(--text3)">›</span><span style="cursor:pointer;color:var(--blue-light);font-weight:600" onclick="navigateFolder('${f.id}')">${esc(f.name)}</span>`).join('')}
+  </div>`;
+
+  if(canManage){
+    html+=`<div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+      <button class="btn btn-ghost btn-sm" onclick="createFolder()">📁 ${currentLang==='sq'?'Dosje e Re':'New Folder'}</button>
+      <button class="btn btn-primary btn-sm" onclick="document.getElementById('scriptFileInput').click()">⬆ ${currentLang==='sq'?'Ngarko':'Upload'}</button>
+      <input type="file" id="scriptFileInput" accept=".doc,.docx,.pdf,.xls,.xlsx,.ppt,.pptx" style="display:none" onchange="handleScriptFile(this.files[0])">
+    </div>
+    <div id="scriptsDropZone" style="border:2px dashed var(--border);border-radius:10px;padding:10px 16px;text-align:center;font-size:12px;color:var(--text3);margin-bottom:14px;transition:all 0.15s"
+      ondragover="event.preventDefault();this.style.borderColor='var(--blue)';this.style.background='var(--blue-dim)'"
+      ondragleave="this.style.borderColor='';this.style.background=''"
+      ondrop="handleScriptDrop(event)">${currentLang==='sq'?'Tërhiq skedarin këtu':'Drag file here to upload'}</div>`;
+  }
+
+  if(!folders.length&&!files.length){
+    html+=`<div class="scripts-empty"><div class="es-icon">📂</div><h3>${currentLang==='sq'?'Dosja është bosh':'Folder is empty'}</h3><p style="font-size:12px;color:var(--text3)">${canManage?(currentLang==='sq'?'Krijo dosje ose ngarko skript':'Create folder or upload script'):(currentLang==='sq'?'Asgjë nuk është ngarkuar':'Nothing uploaded yet')}</p></div>`;
+    el.innerHTML=html; return;
+  }
+
+  if(folders.length){
+    html+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-bottom:16px">`;
+    folders.forEach(f=>{
+      const fc=(db.scriptFolders||[]).filter(x=>x.parentId===f.id).length;
+      const sc=(db.scripts||[]).filter(x=>x.folderId===f.id).length;
+      html+=`<div class="fm-folder-card" onclick="navigateFolder('${f.id}')">
+        <span style="font-size:28px">📁</span>
+        <div style="font-size:13px;font-weight:600;margin-top:6px;word-break:break-word">${esc(f.name)}</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:3px">${sc} ${currentLang==='sq'?'skedarë':'files'}${fc?` · ${fc} ${currentLang==='sq'?'dosje':'folders'}`:''}</div>
+        ${canManage?`<div class="fm-folder-actions" onclick="event.stopPropagation()">
+          <button class="btn btn-ghost btn-xs" onclick="renameFolder('${f.id}')">✏</button>
+          <button class="btn btn-danger btn-xs" onclick="deleteFolder('${f.id}')">🗑</button>
+        </div>`:''}
+      </div>`;
+    });
+    html+=`</div>`;
+  }
+
+  if(files.length){
+    html+=`<div style="display:flex;flex-direction:column;gap:6px">`;
+    files.sort((a,b)=>new Date(b.uploadedAt)-new Date(a.uploadedAt)).forEach(f=>{
+      const up=db.users.find(u=>u.id===f.uploadedBy);
+      html+=`<div class="script-file">
+        <span class="file-icon">${getFileIcon(f.name)}</span>
+        <div class="file-info">
+          <div class="file-name" title="${esc(f.name)}">${esc(f.name)}</div>
+          <div class="file-meta">${up?esc(up.name.split(' ')[0]):''} · ${new Date(f.uploadedAt).toLocaleDateString(currentLang==='sq'?'sq-AL':'en-GB')} · ${formatFileSize(f.size)}</div>
+        </div>
+        <div class="file-actions">
+          <button class="btn btn-primary btn-xs" onclick="downloadScript('${f.id}')">⬇ ${currentLang==='sq'?'Shkarko':'Download'}</button>
+          ${canManage?`<button class="btn btn-ghost btn-xs" onclick="renameScript('${f.id}')" title="${currentLang==='sq'?'Riemërto':'Rename'}">✏</button>
+          <button class="btn btn-ghost btn-xs" onclick="moveScript('${f.id}')" title="${currentLang==='sq'?'Lëviz':'Move'}">📂</button>
+          <button class="btn btn-danger btn-xs" onclick="deleteScript('${f.id}')">🗑</button>`:''}
+        </div>
+      </div>`;
+    });
+    html+=`</div>`;
+  }
+  el.innerHTML=html;
+}
+function navigateFolder(id){_scriptFolderId=id||null;renderScriptsContent();}
+function createFolder(){
+  const name=prompt(currentLang==='sq'?'Emri i dosjes:':'Folder name:','');
+  if(!name||!name.trim()) return;
+  if(!db.scriptFolders) db.scriptFolders=[];
+  db.scriptFolders.push({id:'sf'+Date.now(),name:name.trim(),scope:_scriptScope,parentId:_scriptFolderId||null,createdBy:currentUser.id,createdAt:new Date().toISOString()});
+  save(); renderScriptsContent();
+}
+function renameFolder(id){
+  const f=(db.scriptFolders||[]).find(x=>x.id===id); if(!f) return;
+  const n=prompt(currentLang==='sq'?'Emri i ri:':'New name:',f.name);
+  if(!n||!n.trim()) return;
+  f.name=n.trim(); save(); renderScriptsContent();
+}
+function deleteFolder(id){
+  const f=(db.scriptFolders||[]).find(x=>x.id===id); if(!f) return;
+  const hasChildren=(db.scriptFolders||[]).some(x=>x.parentId===id)||(db.scripts||[]).some(x=>x.folderId===id);
+  const msg=hasChildren?(currentLang==='sq'?`"${f.name}" ka skedarë brenda. Jeni të sigurt?`:`"${f.name}" has files inside. Sure?`):`"${f.name}"?`;
+  showConfirm(currentLang==='sq'?'Fshi Dosjen':'Delete Folder',msg,()=>{
+    deleteFolderRecursive(id); save();
+    toast(currentLang==='sq'?'Dosja u fshi.':'Folder deleted.','info');
+    renderScriptsContent();
+  });
+}
+function deleteFolderRecursive(id){
+  (db.scriptFolders||[]).filter(f=>f.parentId===id).forEach(f=>deleteFolderRecursive(f.id));
+  db.scriptFolders=(db.scriptFolders||[]).filter(f=>f.id!==id);
+  db.scripts=(db.scripts||[]).filter(s=>s.folderId!==id);
+}
+function handleScriptDrop(e){
+  e.preventDefault();
+  const dz=document.getElementById('scriptsDropZone');
+  if(dz){dz.style.borderColor='';dz.style.background='';}
+  const file=e.dataTransfer.files[0]; if(file) handleScriptFile(file);
+}
+function handleScriptFile(file){
+  if(!file) return;
+  if(file.size>1024*1024){toast(currentLang==='sq'?'Skedari mbi 1MB!':'File exceeds 1MB!','error');return;}
+  const allowed=['doc','docx','pdf','xls','xlsx','ppt','pptx'];
+  if(!allowed.includes(file.name.split('.').pop().toLowerCase())){toast(currentLang==='sq'?'Format i pa lejuar!':'Format not allowed!','error');return;}
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    if(!db.scripts) db.scripts=[];
+    db.scripts.push({id:'sc'+Date.now(),name:file.name,scope:_scriptScope,folderId:_scriptFolderId||null,data:ev.target.result,size:file.size,uploadedBy:currentUser.id,uploadedAt:new Date().toISOString(),mimeType:file.type});
+    save(); toast(currentLang==='sq'?`"${file.name}" u ngarkua!`:`"${file.name}" uploaded!`,'success');
+    renderScriptsContent();
+  };
+  reader.readAsDataURL(file);
+}
+function downloadScript(id){
+  const s=(db.scripts||[]).find(x=>x.id===id); if(!s) return;
+  const a=document.createElement('a'); a.href=s.data; a.download=s.name; a.click();
+}
+function deleteScript(id){
+  const s=(db.scripts||[]).find(x=>x.id===id); if(!s) return;
+  showConfirm(currentLang==='sq'?'Fshi Skriptin':'Delete Script',`"${s.name}"?`,()=>{
+    db.scripts=(db.scripts||[]).filter(x=>x.id!==id); save();
+    toast(currentLang==='sq'?'Skripti u fshi.':'Script deleted.','info');
+    renderScriptsContent();
+  });
+}
+function renameScript(id){
+  const s=(db.scripts||[]).find(x=>x.id===id); if(!s) return;
+  const n=prompt(currentLang==='sq'?'Emri i ri:':'New name:',s.name);
+  if(!n||!n.trim()) return;
+  s.name=n.trim(); save(); renderScriptsContent();
+}
+function moveScript(id){
+  const allFolders=(db.scriptFolders||[]).filter(f=>f.scope===_scriptScope);
+  const options=[{id:null,label:'📂 Root'},...allFolders.map(f=>({id:f.id,label:'📁 '+f.name}))];
+  const listText=options.map((o,i)=>i+': '+o.label).join('\n');
+  const header=currentLang==='sq'?'Lëviz tek (numri):':'Move to (number):';
+  const choice=prompt(header+'\n'+listText,'0');
+  if(choice===null) return;
+  const idx=parseInt(choice);
+  if(isNaN(idx)||idx<0||idx>=options.length) return;
+  const s=(db.scripts||[]).find(x=>x.id===id); if(!s) return;
+  s.folderId=options[idx].id; save(); renderScriptsContent();
+}
+
+
 function renderPage(page){
-  currentPage=page;
-  buildNav();buildSidebar();
+  currentPage=page;buildNav();buildSidebar();
   const ca=document.getElementById('contentArea');
-  if(!ca)return;
-  if(page==='dashboard'){
-    if(isAdmin()) ca.innerHTML=renderAdminPanel();
-    else if(isLocalLeader()) ca.innerHTML=renderLeaderDashboard();
-    else if(isRegionalLeader()) ca.innerHTML=renderRegionalDashboard();
-    else ca.innerHTML=renderEditorDashboard();
-  } else if(page==='projects'){
-    if(isLocalLeader()||isRegionalLeader()) ca.innerHTML=renderLeaderProjects();
-    else ca.innerHTML=renderEditorProjects();
-  } else if(page==='myprojects'){
-    ca.innerHTML=renderEditorProjects();
-  } else if(page==='timeline'){
-    ca.innerHTML=renderTimeline(db.projects.filter(canSeeProject));
-  } else if(page==='users'){
-    ca.innerHTML=renderTeam();
-  } else if(page==='admin'){
-    ca.innerHTML=renderAdminPanel();
+  if(isAdmin()){
+    if(page==='dashboard')ca.innerHTML=renderAdminPanel();
+    else if(page==='projects')ca.innerHTML=renderLeaderProjects();
+    else if(page==='timeline')ca.innerHTML=renderTimeline(db.projects.filter(canSeeProject));
+    else if(page==='users')ca.innerHTML=renderUsers();
+  } else if(isLocalLeader()){
+    if(page==='dashboard')ca.innerHTML=renderLeaderDashboard();
+    else if(page==='projects')ca.innerHTML=renderLeaderProjects();
+    else if(page==='scripts'){ca.innerHTML=renderScripts();initScriptsPage();}
+    else if(page==='timeline')ca.innerHTML=renderTimeline(db.projects.filter(canSeeProject));
+    else if(page==='users')ca.innerHTML=renderUsers();
+  } else if(isRegionalLeader()){
+    if(page==='dashboard')ca.innerHTML=renderRegionalDashboard();
+    else if(page==='projects')ca.innerHTML=renderLeaderProjects();
+    else if(page==='scripts'){ca.innerHTML=renderScripts();initScriptsPage();}
+    else if(page==='timeline')ca.innerHTML=renderTimeline(db.projects.filter(canSeeProject));
   } else {
-    ca.innerHTML=`<div class="empty-state"><div class="es-icon">🔍</div><h3>Faqja nuk u gjet</h3></div>`;
+    const mine=db.projects.filter(p=>getAssignees(p).includes(currentUser.id));
+    if(page==='dashboard')ca.innerHTML=renderEditorDashboard();
+    else if(page==='myprojects')ca.innerHTML=renderEditorProjects();
+    else if(page==='scripts'){ca.innerHTML=renderScripts();initScriptsPage();}
+    else if(page==='timeline')ca.innerHTML=renderTimeline(mine);
   }
 }
 
-function isAdmin(u){ return (u||currentUser).role==='admin'; }
-
-
-// ══ ADMIN PANEL ══
-const EMAILJS_SERVICE='service_ot4jgff';
-const EMAILJS_TEMPLATE='template_svwfrtf';
+// ══ EMAILJS CONFIG ══
+const EMAILJS_SVC='service_ot4jgff';
+const EMAILJS_TPL='template_svwfrtf';
 const EMAILJS_KEY='jrbxR6fBKeJ0oetk5';
 
+function loadEmailJS(){
+  return new Promise(resolve=>{
+    if(typeof emailjs!=='undefined'){resolve();return;}
+    const s=document.createElement('script');
+    s.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    s.onload=()=>{emailjs.init(EMAILJS_KEY);resolve();};
+    s.onerror=()=>resolve();
+    document.head.appendChild(s);
+  });
+}
+
+// ══ ADMIN PANEL ══
 function renderAdminPanel(){
   const sq=currentLang==='sq';
   const cfg=db.adminConfig||{};
   const leaders=db.users.filter(u=>u.role==='leader'||u.role==='regional');
-  const editors=db.users.filter(u=>u.role==='editor');
   const days=sq?['E Hënë','E Martë','E Mërkurë','E Enjte','E Premte','E Shtunë','E Diel']:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
 
   return `<div class="page-header">
     <div class="page-title">⚙️ Admin Panel<small>${sq?'Menaxhim i plotë i sistemit':'Full system management'}</small></div>
   </div>
 
-  <!-- SECTION: Daily Email Assignment -->
   <div class="section-header"><span class="section-title">📧 ${sq?'Caktimi Ditor me Email':'Daily Email Assignment'}</span></div>
   <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px">
     <div class="form-row" style="margin-bottom:14px">
@@ -1759,7 +1953,7 @@ function renderAdminPanel(){
         <label class="form-label">${sq?'Liderit që i dërgohet njoftimi':'Leader to notify'}</label>
         <select class="form-select" id="adminNotifLeader">
           <option value="">${sq?'— Zgjedh Liderin —':'— Select Leader —'}</option>
-          ${leaders.map(u=>`<option value="${u.id}" ${cfg.notifLeaderId===u.id?'selected':''}>${esc(u.name)} (${getRoleLabel(u.role)})</option>`).join('')}
+          ${leaders.map(u=>`<option value="${u.id}" ${cfg.notifLeaderId===u.id?'selected':''}>${esc(u.name)}</option>`).join('')}
         </select>
       </div>
       <div class="form-group">
@@ -1770,87 +1964,82 @@ function renderAdminPanel(){
     <div class="form-group" style="margin-bottom:14px">
       <label class="form-label">${sq?'Ditët e javës':'Days of week'}</label>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
-        ${days.map((d,i)=>`<label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:12px;padding:5px 10px;border:1px solid var(--border);border-radius:20px;background:${(cfg.notifDays||[]).includes(i)?'var(--blue-dim)':'var(--surface2)'};color:${(cfg.notifDays||[]).includes(i)?'var(--blue-light)':'var(--text2)'}">
+        ${days.map((d,i)=>`<label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:12px;padding:5px 12px;border:1px solid var(--border);border-radius:20px;background:${(cfg.notifDays||[]).includes(i)?'var(--blue-dim)':'var(--surface2)'};color:${(cfg.notifDays||[]).includes(i)?'var(--blue-light)':'var(--text2)'}">
           <input type="checkbox" value="${i}" ${(cfg.notifDays||[]).includes(i)?'checked':''} style="display:none" onchange="adminToggleDay(${i})"> ${d}
         </label>`).join('')}
       </div>
     </div>
-    <button class="btn btn-primary" style="width:auto" onclick="saveAdminConfig()">💾 ${sq?'Ruaj Cilësimet':'Save Settings'}</button>
-    <button class="btn btn-ghost btn-sm" style="margin-left:8px" onclick="openDailyAssignment()">${sq?'📋 Cakto Projektet Tani':'📋 Assign Now'}</button>
-  </div>
-
-  <!-- SECTION: Backup & Restore -->
-  <div class="section-header"><span class="section-title">💾 ${sq?'Backup & Restore':'Backup & Restore'}</span></div>
-  <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px">
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-      <button class="btn btn-primary" style="width:auto" onclick="downloadBackup()">⬇ ${sq?'Shkarko Backup JSON':'Download Backup JSON'}</button>
-      <label class="btn btn-ghost" style="cursor:pointer">
-        ⬆ ${sq?'Importo Backup':'Import Backup'}
-        <input type="file" accept=".json" style="display:none" onchange="importBackup(this)">
-      </label>
-      <div style="font-size:11px;color:var(--text3)">${sq?'Backup i fundit: ':'Last backup: '}${cfg.lastBackup?new Date(cfg.lastBackup).toLocaleString():'—'}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-primary" style="width:auto" onclick="saveAdminConfig()">💾 ${sq?'Ruaj Cilësimet':'Save Settings'}</button>
+      <button class="btn btn-ghost btn-sm" onclick="openDailyAssignment()">📋 ${sq?'Cakto & Dërgo Email':'Assign & Send Email'}</button>
     </div>
   </div>
 
-  <!-- SECTION: System Settings -->
+  <div class="section-header"><span class="section-title">💾 Backup & Restore</span></div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="btn btn-primary" style="width:auto" onclick="downloadBackup()">⬇ ${sq?'Shkarko Backup JSON':'Download Backup'}</button>
+      <label class="btn btn-ghost" style="cursor:pointer;width:auto">
+        ⬆ ${sq?'Importo Backup':'Import Backup'}
+        <input type="file" accept=".json" style="display:none" onchange="importBackup(this)">
+      </label>
+      <span style="font-size:11px;color:var(--text3)">${cfg.lastBackup?new Date(cfg.lastBackup).toLocaleString():'—'}</span>
+    </div>
+  </div>
+
   <div class="section-header"><span class="section-title">🔧 ${sq?'Cilësimet e Sistemit':'System Settings'}</span></div>
   <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px">
     <div class="form-row">
       <div class="form-group">
         <label class="form-label">${sq?'Emri i Sistemit':'System Name'}</label>
-        <input class="form-input" type="text" id="adminSysName" value="${cfg.sysName||'Video Production Task Hub'}" placeholder="Video Production Task Hub">
+        <input class="form-input" type="text" id="adminSysName" value="${cfg.sysName||'Video Production Task Hub'}">
       </div>
       <div class="form-group">
         <label class="form-label">${sq?'Pastro Njoftimet e Vjetra (>N ditë)':'Clear Old Notifications (>N days)'}</label>
         <div style="display:flex;gap:8px">
           <input class="form-input" type="number" id="adminClearDays" value="30" min="1" style="flex:1">
-          <button class="btn btn-danger" style="width:auto;flex-shrink:0" onclick="clearOldNotifs()">🗑 ${sq?'Pastro':'Clear'}</button>
+          <button class="btn btn-danger" style="width:auto;flex-shrink:0" onclick="clearOldNotifs()">🗑</button>
         </div>
       </div>
     </div>
     <button class="btn btn-primary" style="width:auto" onclick="saveAdminConfig()">💾 ${sq?'Ruaj':'Save'}</button>
   </div>
 
-  <!-- SECTION: Users Overview -->
-  <div class="section-header"><span class="section-title">👥 ${sq?'Anëtarët e Sistemit':'System Members'} (${db.users.length})</span></div>
-  <div class="team-grid" style="margin-bottom:20px">
+  <div class="section-header"><span class="section-title">👥 ${sq?'Anëtarët':'Members'} (${db.users.length})</span></div>
+  <div class="team-grid">
     ${db.users.map(u=>`<div class="user-card" style="display:flex;align-items:center;gap:12px;padding:12px">
       <div class="av-lg ${getAvatarClass(u.role)}">${initials(u.name)}</div>
       <div style="flex:1;min-width:0">
         <div style="font-size:13px;font-weight:700">${esc(u.name)}</div>
-        <div style="font-size:11px;color:var(--text3)">@${u.username||'—'}</div>
+        <div style="font-size:11px;color:var(--text3)">@${u.username||'—'} ${u.email?'· '+esc(u.email):''}</div>
         <span class="role-badge ${getRoleBadgeClass(u.role)}">${getRoleLabel(u.role)}</span>
       </div>
     </div>`).join('')}
   </div>`;
 }
 
+function adminToggleDay(i){
+  if(!db.adminConfig) db.adminConfig={};
+  if(!db.adminConfig.notifDays) db.adminConfig.notifDays=[];
+  const arr=db.adminConfig.notifDays;
+  const idx=arr.indexOf(i);
+  if(idx>=0) arr.splice(idx,1); else arr.push(i);
+  save(); renderPage('dashboard');
+}
+
 function saveAdminConfig(){
   if(!db.adminConfig) db.adminConfig={};
-  const timeVal=document.getElementById('adminNotifTime')?.value;
-  const leaderVal=document.getElementById('adminNotifLeader')?.value;
-  const sysName=document.getElementById('adminSysName')?.value;
-  if(timeVal) db.adminConfig.notifTime=timeVal;
-  if(leaderVal) db.adminConfig.notifLeaderId=leaderVal;
-  if(sysName) db.adminConfig.sysName=sysName;
-  // Save checked days
-  const checks=document.querySelectorAll('#adminNotifLeader')?.closest?.('div')?.querySelectorAll?.('input[type=checkbox]')||[];
+  const t2=document.getElementById('adminNotifTime')?.value;
+  const l=document.getElementById('adminNotifLeader')?.value;
+  const sn=document.getElementById('adminSysName')?.value;
+  if(t2) db.adminConfig.notifTime=t2;
+  if(l!==undefined) db.adminConfig.notifLeaderId=l;
+  if(sn) db.adminConfig.sysName=sn;
   save();
   toast(currentLang==='sq'?'✅ Cilësimet u ruajtën!':'✅ Settings saved!','success');
   startAdminAlarm();
 }
 
-function adminToggleDay(dayIdx){
-  if(!db.adminConfig) db.adminConfig={};
-  if(!db.adminConfig.notifDays) db.adminConfig.notifDays=[];
-  const arr=db.adminConfig.notifDays;
-  const i=arr.indexOf(dayIdx);
-  if(i>=0) arr.splice(i,1); else arr.push(dayIdx);
-  save();
-  renderPage('dashboard');
-}
-
-// ── Backup/Restore ──
 function downloadBackup(){
   const sq=currentLang==='sq';
   const ts=new Date().toISOString().slice(0,19).replace(/:/g,'-');
@@ -1873,20 +2062,12 @@ function importBackup(input){
   reader.onload=e=>{
     try{
       const data=JSON.parse(e.target.result);
-      if(!data.users||!data.projects) throw new Error('Invalid backup');
-      showConfirm(
-        sq?'Importo Backup':'Import Backup',
-        sq?`Kjo do të zëvendësojë TË GJITHA të dhënat aktuale me backup-in e zgjedhur. Jeni të sigurt?`:`This will replace ALL current data with the selected backup. Are you sure?`,
-        ()=>{
-          db=data;
-          save();
-          toast(sq?'✅ Backup u importua me sukses!':'✅ Backup imported successfully!','success');
-          renderPage('dashboard');
-        }
+      if(!data.users||!data.projects) throw new Error('invalid');
+      showConfirm(sq?'Importo Backup':'Import Backup',
+        sq?'Kjo do te zevendesoje te gjitha te dhenat aktuale. Jeni te sigurt?':'This will replace all current data. Are you sure?',
+        ()=>{db=data;save();toast(sq?'✅ Backup u importua!':'✅ Backup imported!','success');renderPage('dashboard');}
       );
-    } catch(err){
-      toast(sq?'❌ Skedari i backup-it nuk është valid!':'❌ Invalid backup file!','error');
-    }
+    }catch(err){toast(sq?'Skedari nuk eshte valid!':'Invalid backup file!','error');}
   };
   reader.readAsText(file);
   input.value='';
@@ -1898,126 +2079,98 @@ function clearOldNotifs(){
   const cutoff=new Date(); cutoff.setDate(cutoff.getDate()-days);
   const before=db.notifications.length;
   db.notifications=db.notifications.filter(n=>new Date(n.time)>=cutoff);
-  const removed=before-db.notifications.length;
-  save();
-  toast(sq?`✅ ${removed} njoftime u fshien!`:`✅ ${removed} notifications cleared!`,'success');
+  save(); toast(sq?`✅ ${before-db.notifications.length} njoftime u fshin!`:`✅ ${before-db.notifications.length} cleared!`,'success');
   renderPage('dashboard');
 }
 
-// ── Daily Assignment Modal ──
 function openDailyAssignment(){
   const sq=currentLang==='sq';
   const editors=db.users.filter(u=>u.role==='editor');
   const active=db.projects.filter(p=>canSeeProject(p)&&['active','pending','review'].includes(p.status));
-
-  let html=`<div class="modal-title" style="margin-bottom:16px">📋 ${sq?'Cakto Projektet për Nesër':'Assign Projects for Tomorrow'}</div>`;
-  html+=`<div style="font-size:12px;color:var(--text2);margin-bottom:16px">${sq?'Zgjedh projektet për secilin montazher. Pas konfirmimit, emailet dërgohen automatikisht.':'Select projects for each editor. After confirming, emails will be sent automatically.'}</div>`;
-
+  let html='';
   editors.forEach(u=>{
     const mine=active.filter(p=>getAssignees(p).includes(u.id));
-    html+=`<div style="margin-bottom:16px;padding:12px;background:var(--surface2);border-radius:10px;border:1px solid var(--border)">
-      <div style="font-size:13px;font-weight:700;margin-bottom:8px">${esc(u.name)}</div>
+    html+=`<div style="margin-bottom:14px;padding:12px;background:var(--surface2);border-radius:10px;border:1px solid var(--border)">
+      <div style="font-size:13px;font-weight:700;margin-bottom:8px">${esc(u.name)}${u.email?` <span style="font-size:10px;color:var(--text3)">(${esc(u.email)})</span>`:'<span style="font-size:10px;color:var(--red)"> — pa email!</span>'}</div>
       <div class="form-group" style="margin-bottom:6px">
         <label class="form-label" style="font-size:10px">${sq?'Projekti':'Project'}</label>
-        <select class="form-select" id="assign_proj_${u.id}" style="font-size:12px">
-          <option value="">${sq?'— Asnjë —':'— None —'}</option>
-          ${active.map(p=>`<option value="${p.id}" ${mine.length>0&&mine[0].id===p.id?'selected':''}>${esc(p.title)}</option>`).join('')}
+        <select class="form-select" id="asgn_${u.id}" style="font-size:12px">
+          <option value="">${sq?'— Asnje —':'— None —'}</option>
+          ${active.map(p=>`<option value="${p.id}" ${mine[0]?.id===p.id?'selected':''}>${esc(p.title)}</option>`).join('')}
         </select>
       </div>
       <div class="form-group" style="margin-bottom:0">
-        <label class="form-label" style="font-size:10px">${sq?'Shënim (opsional)':'Note (optional)'}</label>
-        <input class="form-input" type="text" id="assign_note_${u.id}" placeholder="${sq?'Mesazh për montazherin...':'Message for editor...'}" style="font-size:12px">
+        <label class="form-label" style="font-size:10px">${sq?'Shenim':'Note'}</label>
+        <input class="form-input" type="text" id="note_${u.id}" placeholder="${sq?'Mesazh per montazherin...':'Message for editor...'}" style="font-size:12px">
       </div>
     </div>`;
   });
-
-  html+=`<div class="modal-footer" style="margin-top:16px">
+  if(!editors.length) html=`<div class="empty-state"><div class="es-icon">👤</div><h3>${sq?'Nuk ka montazhere':'No editors'}</h3></div>`;
+  html+=`<div class="modal-footer">
     <button class="btn btn-ghost" onclick="closeModal('dailyAssignModal')">${sq?'Anulo':'Cancel'}</button>
-    <button class="btn btn-primary" style="width:auto" onclick="sendDailyEmails()">📧 ${sq?'Dërgo Emailet':'Send Emails'}</button>
+    <button class="btn btn-primary" style="width:auto" onclick="sendDailyEmails()">📧 ${sq?'Dergo Emailet':'Send Emails'}</button>
   </div>`;
-
-  document.getElementById('dailyAssignModalBody').innerHTML=html;
+  document.getElementById('dailyAssignBody').innerHTML=html;
   openModal('dailyAssignModal');
 }
 
 async function sendDailyEmails(){
   const sq=currentLang==='sq';
   const editors=db.users.filter(u=>u.role==='editor');
-  let sent=0, failed=0;
-
-  // Load EmailJS
-  if(typeof emailjs==='undefined'){
-    toast(sq?'Duke ngarkuar EmailJS...':'Loading EmailJS...','info');
-    await loadEmailJS();
-  }
-
-  toast(sq?'Duke dërguar emailet...':'Sending emails...','info');
-
+  toast(sq?'Duke ngarkuar EmailJS...':'Loading EmailJS...','info');
+  await loadEmailJS();
+  if(typeof emailjs==='undefined'){toast(sq?'EmailJS nuk u ngarkua!':'EmailJS failed to load!','error');return;}
+  let sent=0,failed=0,skipped=0;
   for(const u of editors){
-    const projId=document.getElementById(`assign_proj_${u.id}`)?.value;
-    const note=document.getElementById(`assign_note_${u.id}`)?.value||'—';
-    if(!projId||!u.email) continue;
-    const p=db.projects.find(x=>x.id===projId); if(!p) continue;
-
+    const projId=document.getElementById('asgn_'+u.id)?.value;
+    const note=document.getElementById('note_'+u.id)?.value||'—';
+    if(!projId){skipped++;continue;}
+    if(!u.email){toast(`${u.name}: ${sq?'pa email':'no email'}!`,'error');failed++;continue;}
+    const p=db.projects.find(x=>x.id===projId); if(!p){skipped++;continue;}
     try{
-      await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
-        to_name: u.name,
-        to_email: u.email,
-        project_title: p.title,
-        deadline: p.deadline||'—',
-        priority: pLabel(p.priority)||p.priority,
-        est_hours: p.estHours?p.estHours+'h':'—',
-        progress: p.progress||0,
-        description: p.desc||'—',
-        note: note,
-      }, EMAILJS_KEY);
+      await emailjs.send(EMAILJS_SVC,EMAILJS_TPL,{
+        to_name:u.name, to_email:u.email,
+        project_title:p.title,
+        deadline:p.deadline||'—',
+        priority:pLabel(p.priority)||String(p.priority),
+        est_hours:p.estHours?p.estHours+'h':'—',
+        progress:String(p.progress||0),
+        description:p.desc||'—',
+        note
+      },EMAILJS_KEY);
       sent++;
-      addNotif(u.id,`📧 ${sq?'Email i caktimit u dërgua për':'Assignment email sent for'} "${p.title}"`);
-    } catch(err){
-      console.error('EmailJS error:',err);
-      failed++;
-    }
+      addNotif(u.id,`📧 ${sq?'Email i caktimit per':'Assignment email for'} "${p.title}"`);
+    }catch(err){console.error('EmailJS:',err);failed++;}
   }
-
   closeModal('dailyAssignModal');
-  if(sent>0) toast(sq?`✅ ${sent} email u dërguan!`:`✅ ${sent} emails sent!`,'success');
-  if(failed>0) toast(sq?`⚠ ${failed} email dështuan — kontrolloni email-et e montazherëve`:`⚠ ${failed} emails failed — check editor emails`,'error');
+  if(sent>0) toast(sq?`✅ ${sent} email u derguan!`:`✅ ${sent} emails sent!`,'success');
+  if(failed>0) toast(sq?`⚠ ${failed} email deshtuan!`:`⚠ ${failed} failed!`,'error');
   save();
 }
 
-function loadEmailJS(){
-  return new Promise(resolve=>{
-    if(typeof emailjs!=='undefined'){resolve();return;}
-    const s=document.createElement('script');
-    s.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-    s.onload=()=>{emailjs.init(EMAILJS_KEY);resolve();};
-    document.head.appendChild(s);
-  });
-}
-
-// ── Admin Alarm ──
 function startAdminAlarm(){
-  clearInterval(window._adminAlarmInterval);
-  window._adminAlarmInterval=setInterval(()=>{
+  clearInterval(window._admAlarm);
+  window._admAlarm=setInterval(()=>{
     if(!currentUser||!isAdmin()) return;
     const cfg=db.adminConfig||{};
     if(!cfg.notifLeaderId||!cfg.notifTime||!(cfg.notifDays||[]).length) return;
     const now=new Date();
-    const dow=now.getDay()===0?6:now.getDay()-1; // 0=Mon
+    const dow=now.getDay()===0?6:now.getDay()-1;
     if(!(cfg.notifDays||[]).includes(dow)) return;
-    const [h,m]=cfg.notifTime.split(':').map(Number);
+    const [h,m]=(cfg.notifTime||'17:00').split(':').map(Number);
     if(now.getHours()===h&&now.getMinutes()===m){
-      const alarmKey=`admin_alarm_${now.toISOString().slice(0,16)}`;
-      if(localStorage.getItem(alarmKey)) return;
-      localStorage.setItem(alarmKey,'1');
-      addNotif(cfg.notifLeaderId,currentLang==='sq'?'⏰ Koha për të caktuar projektet e ditës së ardhshme!':'⏰ Time to assign tomorrow\'s projects!');
+      const key='adm_'+now.toISOString().slice(0,16);
+      if(localStorage.getItem(key)) return;
+      localStorage.setItem(key,'1');
+      addNotif(cfg.notifLeaderId,currentLang==='sq'?'⏰ Koha per te caktuar projektet e neser!':'⏰ Time to assign tomorrow projects!');
     }
   },30000);
 }
 
-
 function renderLiveBanner(){
   const editors=db.users.filter(u=>u.role==='editor');
+  const now=new Date();
+  const timeStr=now.toLocaleTimeString(currentLang==='sq'?'sq-AL':'en-GB',{hour:'2-digit',minute:'2-digit'});
 
   const rows=editors.map(u=>{
     const active=db.projects.filter(p=>
@@ -3134,7 +3287,7 @@ function userCardFull(u){
         ${u.role==='editor'?`<span style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text2)"><span class="status-dot ${isFree?'sd-free':'sd-busy'}"></span>${isFree?t('status_free'):t('status_busy')}</span>`:''}
         ${pres?`<span class="presence-label ${pres.status}" style="font-size:10px">${pres.label}</span>`:''}
       </div>
-      <div class="user-sub">✅ ${done} ${t('user_completed')} · @${u.username}${u.email?` · ${esc(u.email)}`:''}</div>
+      <div class="user-sub">✅ ${done} ${t('user_completed')} · @${u.username}</div>
     </div>
     ${canAdmin?`<div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end">
       <button class="btn btn-ghost btn-xs" onclick="quickAssign('${u.id}')">${t('btn_add_project')}</button>
@@ -3809,9 +3962,9 @@ function saveUser(){
   const name=document.getElementById('uName').value.trim();
   const pass=document.getElementById('uPass').value;
   const role=document.getElementById('uRole').value;
-  const email=document.getElementById('uEmail')?.value.trim()||'';
   if(!name){toast('Emri i plotë është i detyrueshëm!','error');return;}
   if(!pass||pass.length<4){toast('Password min. 4 chars!','error');return;}
+  const email=document.getElementById('uEmail')?.value.trim()||'';
   const username=nameToUsername(name);
   db.users.push({id:'u'+Date.now(),name,username,password:pass,role,email,createdAt:new Date().toISOString()});
   save();closeModal('userModal');toast(`${getRoleLabel(role)} ${name} ${t('toast_user_added')} (login: ${username})`,'success');renderPage(currentPage);
@@ -5192,12 +5345,12 @@ setInterval(()=>{
 
 <!-- Daily Assignment Modal -->
 <div class="modal-overlay" id="dailyAssignModal">
-  <div class="modal" style="max-width:520px">
+  <div class="modal" style="max-width:500px">
     <div class="modal-header">
       <div class="modal-title">📧 Caktimi Ditor</div>
       <button class="modal-close" onclick="closeModal('dailyAssignModal')">✕</button>
     </div>
-    <div class="modal-body" id="dailyAssignModalBody"></div>
+    <div class="modal-body" id="dailyAssignBody" style="max-height:60vh;overflow-y:auto"></div>
   </div>
 </div>
 
